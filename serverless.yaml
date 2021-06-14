@@ -1,0 +1,44 @@
+service: dark-web-finder-api
+plugins:
+ - 'serverless-plugin-typescript'
+ - serverless-plugin-optimize
+ - serverless-offline
+useDotenv: true
+provider:
+    name: aws
+    tracing:
+        apiGateway: true
+    runtime: nodejs12.x
+    memorySize: 256
+    stage: ${opt:stage, 'dev'}
+    region: us-east-1
+    lambdaHashingVersion: "20201221"
+    environment:
+        SEARCH_KEYWORDS_TABLE_NAME: ${self:custom.SearchKeywordsTable.name}
+        stage: ${opt:stage, 'dev'}
+        toEmail: "munib18@gmail.com"
+        fromEmail: "rifatraheem42@gmail.com"
+
+    iam:
+        role:
+            statements:
+                - ${file(iam/SearchKeywordsTableIAM.yml):SearchKeywordsTableIAM}
+custom:
+    SearchKeywordsTable:
+        name: !Ref SearchKeywordsTable
+        arn: !GetAtt SearchKeywordsTable.Arn
+package:
+    individually: true
+
+resources:
+    Resources:
+        SearchKeywordsTable: ${file(resources/SearchKeywordsTable.yml):SearchKeywordsTable}
+
+functions:
+ main: # The name of the lambda function
+   # The module 'handler' is exported in the file 'src/lambda'
+   handler: src/lambda.handler
+   events:
+     - http:
+         method: any
+         path: /{any+}

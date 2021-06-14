@@ -1,0 +1,29 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Darkweb - Alert email</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
+</head>
+
+<body style="margin:0px; padding:0px;">
+    <div style="background: #fff; position: relative; overflow: hidden; margin:0px auto; font-family:sans-serif;">
+
+        <table style="width: 100%;">
+            <thead>
+                <th>Domain</th>
+                <th>Count</th>
+            </thead>
+            <tbody>
+                 {{#each data}}
+                <td class="row">{{this.title}} </td>
+                <td class="row">{{this.total}} </td>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
