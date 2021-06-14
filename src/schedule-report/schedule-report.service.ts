@@ -33,7 +33,7 @@ export class ScheduleReportService {
 
         let rows = ``;
         result.forEach(item => {
-            rows += `<td class="row">${item.title} </td><td class="row">${item.total} </td>`
+            rows += `<tr><td class="row">${item.title} </td><td class="row">${item.total} </td><tr>`
         })
         const html = this.getTemplate(rows);
         const config = {
@@ -201,9 +201,7 @@ export class ScheduleReportService {
                                                 Total (Count)
                                             </th>
                                         </tr>
-                                        <tr>
                                             ${rows}
-                                        </tr>
                                     </table>
                                 </td>
                             </tr>

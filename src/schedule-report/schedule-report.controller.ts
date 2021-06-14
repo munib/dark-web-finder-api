@@ -2,19 +2,10 @@ import { Controller, Post, Body, Res, HttpStatus, Get, Param, Query } from '@nes
 import { ScheduleReportService } from './schedule-report.service';
 import { ScheduleReportDto } from './schedule-report.dto';
 
-
 @Controller('schedule-report')
 export class ScheduleReportController {
     constructor(
-        private scheduleReportService: ScheduleReportService) { }
-
-    @Get('/test-email')
-    async testEmail(@Res() res: any) {
-        return res.status(HttpStatus.BAD_REQUEST).json({
-            ok: true,
-            message: 'working',
-        });
-    }
+        private scheduleReportService: ScheduleReportService) {}
 
     @Get('/alert-email')
     async alertEmail(@Res() res: any) {

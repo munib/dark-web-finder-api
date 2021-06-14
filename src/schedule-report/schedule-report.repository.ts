@@ -1,6 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common';
 const AWS = require('aws-sdk');
-const SES = new AWS.SES();
+const SES = new AWS.SES({region: 'us-east-1'});
 
 
 @Injectable()
